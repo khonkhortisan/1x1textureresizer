@@ -1,5 +1,5 @@
 local disablethismod = false
-local resolution = 4
+local resolution = 1
 local checkerboardme = false
 local resizemethod = 1
 
