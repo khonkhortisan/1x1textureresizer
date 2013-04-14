@@ -73,14 +73,19 @@ local function retex(name, thing)
 			end
 		end
 		success = true
+	elseif thing.tile_images then --old
+		for face = 1, #thing.tile_images do
+			if thing.tile_images[face].name then --animation
+				thing.tile_images[face].name = prepareimage(thing.tile_images[face].name)
+			else
+				thing.tile_images[face] = prepareimage(thing.tile_images[face])
+			end
+		end
+		success = true
 	end
-	if thing.special_tiles then
+	if thing.special_tiles then --old: special_materials
 		for stile = 1, #thing.special_tiles do
-			--EEW
-			--default:water_flowing has special_tiles image
-			--default:water_source  has special_tiles name
-			--Yuck!
-			if thing.special_tiles[stile].image then
+			if thing.special_tiles[stile].image then --old
 				thing.special_tiles[stile].image = prepareimage(thing.special_tiles[stile].image)
 			else
 				thing.special_tiles[stile].name = prepareimage(thing.special_tiles[stile].name)
