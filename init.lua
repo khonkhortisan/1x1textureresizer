@@ -12,6 +12,9 @@ local resizemethod = 1
 
 if not disablethismod then
 
+fakemodname = '['..resolution..'x'..resolution..'textureresizer]'
+io.write(fakemodname..' loading...') io.flush()
+terminal = io.output()
 
 local imagestoreplace = {}
 
@@ -19,7 +22,7 @@ function scaleimage(image, resolution)
 	local r = resolution
 	if resizemethod == 1 then
 		--ImageMagick
-		os.execute('convert '..image..' -resize '..r..' '..image)
+		os.execute('convert '..image..' -resize '..resolution..' '..image)
 	--elseif resizemethod == 2 then
 	--
 	--elseif resizemethod == 3 then
@@ -41,8 +44,7 @@ function filecopy(from,to)
 end
 
 local function renameimage(image)
-	local r = tostring(resolution)
-	return image:gsub("%.",'_'..r..'x'..r..'.')
+	return image:gsub("%.",'_'..resolution..'x'..resolution..'.')
 end
 
 function string:split(sep)
@@ -163,6 +165,8 @@ for image,_ in pairs(imagestoreplace) do
 	filecopy(failimage, newimage)
 end
 
-
+io.output(terminal)
+io.write('\r'..fakemodname..' loaded.   \n')
+io.flush()
 
 end
