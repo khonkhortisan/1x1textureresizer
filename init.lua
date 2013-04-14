@@ -12,8 +12,8 @@ local resizemethod = 1
 
 if not disablethismod then
 
-fakemodname = '['..resolution..'x'..resolution..'textureresizer]'
-io.write(fakemodname..' loading...') io.flush()
+io.write('['..resolution..'x'..resolution..'textureresizer] ')
+io.flush()
 terminal = io.output()
 
 local imagestoreplace = {}
@@ -166,7 +166,7 @@ for image,_ in pairs(imagestoreplace) do
 end
 
 io.output(terminal)
-io.write('\r'..fakemodname..' loaded.   \n')
+io.write('loaded.\n')
 io.flush()
 
 end
